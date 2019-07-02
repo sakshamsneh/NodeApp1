@@ -1,0 +1,10 @@
+const NotesController=require('./controllers/NotesController');
+const db=require('./db');
+const express=require('express');
+const bodyParser = require('body-parser');
+var app=express();
+app.use(bodyParser.json());
+app.use("/notes",NotesController);
+app.use("/",(req, res)=>{	res.status(200).send('Entered Notes App!')	});
+app.use((req, res)=>{	res.status(404).send({url: req.originalUrl + ' not found'})	});
+app.listen(3000,()=>{console.log("Listening at 3000");});
